@@ -74,13 +74,6 @@
 				if (scaleToFit) {
 					w = window.innerWidth;
 					h = window.innerHeight;
-
-					var r = 720 / 1280;
-
-					if (w * r > window.innerHeight) {
-						w = Math.min(w, Math.ceil(h / r));
-					}
-					h = Math.floor(w * r);
 				} else {
 					w = 1280;
 					h = 720;
