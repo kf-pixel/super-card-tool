@@ -57,7 +57,7 @@
 			};
 			var scaleToFit;
 			try {
-				scaleToFit = !!JSON.parse("");
+				scaleToFit = !!JSON.parse("false");
 			} catch (e) {
 				scaleToFit = true;
 			}
@@ -68,8 +68,28 @@
 			}
 			function onResize() {
 				var container = canvas.parentElement;
-				canvas.width = window.innerWidth * window.devicePixelRatio;
-				canvas.height = window.innerHeight * window.devicePixelRatio;
+				var w;
+				var h;
+
+				if (scaleToFit) {
+					w = window.innerWidth;
+					h = window.innerHeight;
+
+					var r = 720 / 1280;
+
+					if (w * r > window.innerHeight) {
+						w = Math.min(w, Math.ceil(h / r));
+					}
+					h = Math.floor(w * r);
+				} else {
+					w = 1280;
+					h = 720;
+				}
+
+				container.style.width = canvas.style.width = w + "px";
+				container.style.height = canvas.style.height = h + "px";
+				container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+				container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
 			}
 			createUnityInstance(canvas, config, progressHandler).then(function (instance) {
 				canvas = instance.Module.canvas;
