@@ -74,16 +74,9 @@
 				if (scaleToFit) {
 					w = window.innerWidth;
 					h = window.innerHeight;
-
-					var r = 800 / 800;
-
-					if (w * r > window.innerHeight) {
-						w = Math.min(w, Math.ceil(h / r));
-					}
-					h = Math.floor(w * r);
 				} else {
-					w = 800;
-					h = 800;
+					w = 1280;
+					h = 720;
 				}
 
 				container.style.width = canvas.style.width = w + "px";
